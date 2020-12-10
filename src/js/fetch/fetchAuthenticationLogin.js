@@ -9,6 +9,6 @@ export default async function fetchAuthenticationLogin(url, dataRegistry) {
 }
     const response = await fetch(`${url}auth/login`,options);
     const responseJson = await response.json();
-    return  localStorage.setItem('key', `${responseJson.accessToken}`);
-
+    
+    return  responseJson
 };
