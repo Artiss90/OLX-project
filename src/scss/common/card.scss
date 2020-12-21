@@ -47,11 +47,17 @@
     display: flex;
     flex-wrap: wrap;
   }
+  margin: 0 -20px;
+  margin-bottom: 50px;
+
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card__item {
-  // margin: 15px;
+  margin: 15px;
   transition: $transition;
+
 
   &:hover {
     box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.16), 0px 4px 4px rgba(0, 0, 0, 0.06),
@@ -63,42 +69,19 @@
       margin-bottom: 20px;
     }
 
-    // @media screen and (min-width: $tablet-upper) {
-    //   margin-right: 20px;
-    // }
+    margin: 10px;
+    margin-bottom: 30px;
   }
 
-  @media screen and (min-width: $tablet-upper) {
-    width: calc((100% - 20px) / 2);
-    margin-right: 20px;
-    margin-bottom: 20px;
-
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
-
-    // &:nth-last-child(-n + 2) {
-    //   margin-bottom: 0;
-    // }
+  @media screen and (min-width: 1280px) {
+    flex-basis: calc((100% - 4 * 20px) / 4);
+    margin: 10px;
+    margin-bottom: 25px;
   }
-
-  @media screen and (min-width: $desctop-upper) {
-    max-width: 295px;
-    width: calc((100% - 40px) / 4);
-    margin-right: 20px;
-    margin-bottom: 20px;
-
-    &:nth-child(2n) {
-      margin-right: 20px;
-    }
-
-    &:nth-child(4n) {
-      margin-right: 0;
-    }
-
-    // &:nth-last-child(-n + 4) {
-    //   margin-bottom: 0;
-    // }
+  @media screen and (min-width: 1310px) {
+    flex-basis: calc((100% - 4 * 20px) / 4);
+    margin: 10px;
+    margin-bottom: 30px;
   }
 }
 
@@ -151,6 +134,7 @@
   // z-index: 10;
   // height: 75px;
   width: 100%;
+  padding-top: 20px;
   padding-left: 20px;
   padding-bottom: 20px;
   background: $white-color;
@@ -160,12 +144,15 @@
   font-weight: 300;
   color: $primary-text-color;
   font-size: 12px;
+  margin-top: 0;
   margin-bottom: 4px;
 }
 
 .card__price {
   font-weight: 700;
   font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.04em;
   color: $primary-text-color;
   &.new {
     color: $orange-color;

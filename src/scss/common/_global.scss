@@ -12,7 +12,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  background-color: $white-color;
+  // background-color: $white-color; где белый?
+  background-color: $bg-gray-color;
 }
 
 img {

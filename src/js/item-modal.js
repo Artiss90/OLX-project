@@ -59,11 +59,26 @@ function updateFavourites(render) {
 cardsContainer.addEventListener('click', onItemClicked);
 
 function onItemClicked(event) {
-  console.log(event.target.src);
+  console.log(event.target.parentNode);
   fetchGetFavorites(API_OLX).then(setFavourites);
-  const image = event.target.querySelector("[data-id]");
-  console.log(image);
-  if(image===null)return;
+  let image = event.target.querySelector("[data-id]");
+  if(image===null){
+    image = event.target.parentNode;
+  }
+  console.log(image.dataset);
+  if(image===null || image.classList.contains("edit"))return;
+
+  if(image.dataset.like===""){
+    for (const item of itemsData) {
+      // if (item._id === undefined) continue;
+      if (item._id.toString() === image.dataset.id) {
+        console.log(item);
+        currentItem = item;
+        onFavouritesClicked();
+        return;
+      }
+    }
+  }
   console.log(image.dataset.id);
   for (const item of itemsData) {
     // if (item._id === undefined) continue;
@@ -302,16 +317,16 @@ swipedetect(imgBig, function(swipedir){
 
     if (swipedir =='left'){
         // alert('You just swiped left!')
-        currentPhotoIdx--;
-        if(currentPhotoIdx<0){
-            currentPhotoIdx = photosSize-1;
+        currentPhotoIdx++;
+        if(currentPhotoIdx===photosSize){
+            currentPhotoIdx = 0;
         }
         changePhotoSwiper();
     }else if(swipedir == 'right'){
         // alert('You just swiped right!')
-        currentPhotoIdx++;
-        if(currentPhotoIdx===photosSize){
-            currentPhotoIdx = 0;
+        currentPhotoIdx--;
+        if(currentPhotoIdx<0){
+            currentPhotoIdx = photosSize-1;
         }
         changePhotoSwiper();
     }

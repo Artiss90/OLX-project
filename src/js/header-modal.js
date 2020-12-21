@@ -93,6 +93,7 @@ function inGetFind(e) {
  // sidenav(Desctop) рендер категорий
 fetchCategory(API_OLX).then(responce => appendSideNavDesctop(responce))
 function appendSideNavDesctop(cat) {
+        
         sideNavDesctop.innerHTML = MarkupSideNavDesctop(cat)
 }
 // sidenav(mobile-tablet) рендрер категорий
