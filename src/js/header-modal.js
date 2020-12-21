@@ -36,7 +36,7 @@ const sideNavContainerRef = document.querySelector(`.sidenav__link`)
 // открытие - закрытие модалок Хедера
 function controlModalWindow(modal) {
            modal.classList.toggle(`is-open`)
-        body.classList.toggle(`is-open-modal`)
+           body.classList.toggle(`is-open-modal`)
 }
 
 
@@ -48,13 +48,17 @@ function onOpenModalHeader(btn, modal) {
 }
 
 modalSerch.addEventListener(`click`, closeBackDropSerch)
+modalCreateAnAd.addEventListener(`click`, closeBackDropSerch)
 window.addEventListener(`keydown`, closeBackDropSerch)
 function closeBackDropSerch(evt) {
         if (modalSerch.classList.contains(`is-open`)) {
                 if (evt.target.className === `modal-search__overlay` || evt.keyCode === 27) {
                 controlModalWindow(modalSerch)
         }    }
-       
+        if (modalCreateAnAd.classList.contains(`is-open`)) {
+                if(evt.target.classList.contains(`create-an-ad-modal`) || evt.keyCode === 27)
+               controlModalWindow(modalCreateAnAd)
+       }
 }
 sideNavContainerRef.addEventListener(`click`, clouseMobileSideNav)
 function clouseMobileSideNav(evt) {

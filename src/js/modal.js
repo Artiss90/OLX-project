@@ -14,7 +14,7 @@ function createNewModalTempl(){
 
 
 
-import  { API_OLX } from './url';
+
 
 // Закриття модалки
 const refs = {
@@ -30,7 +30,7 @@ const productPrice = formAdd.querySelector('#price-product-add');
 const tel = formAdd.querySelector('#sellers-telephone-add');
 const requiredFields = formAdd.querySelectorAll('.required');
 
-const closeModalBtn = document.querySelector('[data-clouse-button-create-ad]'),
+const closeModalBtn = document.querySelector('[data-clouse-button-create-ad]');
 const backdropAdd = document.querySelector('.backdrop-add');
 
 selectProduct.addEventListener('click', renderCategoriesList);
@@ -124,30 +124,29 @@ function correctPriceFunc(){
 
                    // Закриття модалки
 
-//  через кнопку
-closeModalBtn.addEventListener('click', modalClose);
+// //  через кнопку
+// closeModalBtn.addEventListener('click', modalClose);
  
-//  по Esc
-document.addEventListener('keydown', modalEscClose);
+// //  по Esc
+// document.addEventListener('keydown', modalEscClose);
 
-//  по оверлею
-backdropAdd.addEventListener('click', onModalBackdropClick);
+// //  по оверлею
+// backdropAdd.addEventListener('click', onModalBackdropClick);
 
-
-function modalClose() {
-  refs.backdropAdd.classList.add('is-hidden');
-}
-function modalEscClose(evt) {
-  if (evt.key === "Escape") {
-    modalClose();
-  }
-}
-function onModalBackdropClick(evt) {
-  if (evt.target.attributes.class.nodeValue === "backdrop-add") {
-    modalClose();
-  }
-  if (evt.target.attributes.class === undefined) {return}
-}
+// function modalClose() {
+//     refs.backdropAdd.classList.toggle('is-open');
+// }
+// function modalEscClose(evt) {
+//   if (evt.key === "Escape") {
+//     modalClose();
+//   }
+// }
+// function onModalBackdropClick(evt) {
+//   if (evt.target.attributes.class.nodeValue === "backdrop-add") {
+//     modalClose();
+//   }
+//   if (evt.target.attributes.class === undefined) {return}
+// }
 // import addCardModal from '../templates/add-card.hbs';
 // import openModalAuth from './authorization';
 // import modalLogic from './addAndEditModalLogic';
