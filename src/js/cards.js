@@ -12,13 +12,14 @@ import templateHomeCard from '../templates/home-card.hbs';
 
 // category property is rendered by default;)))
 // fetchCall(API_OLX, 1).then(render => document.querySelector('.cards').innerHTML = templateHomeCard(render))
-fetchCall(API_OLX, 1).then(getArray)
+// fetchCall(API_OLX, 1).then(getArray)
 
 // here we are rendering one category we are choosing by click on category;))
 const chooseCategory = document.querySelector('.sidenav-desctop');
 chooseCategory.addEventListener('click', onCategoryClick)
 const mobileMenuRef = document.querySelector('[data-menu]');
-mobileMenuRef.addEventListener(`click`, onCategoryClick
+mobileMenuRef.addEventListener(`click`, onCategoryClick)
+
 function onCategoryClick(e) {
   // paginationSection.classList.remove('is-shown'); не фурыкает пока-что....
     if (e.target.nodeName !== `LI`) {
@@ -30,19 +31,14 @@ function onCategoryClick(e) {
   const category = e.target.textContent;
   
   fetchGetSpecificCategory(API_OLX, category.trim()).then(render => document.querySelector('.cards').innerHTML = templateCard(render))
-  fetchGetSpecificCategory(API_OLX, category.trim()).then(getArray)
+  // fetchGetSpecificCategory(API_OLX, category.trim()).then(getArray)
     history.pushState(null, null, e.target.dataset.category);
   setTimeout(() =>
   { document.querySelector('.cards__title').textContent = category;
 }, 1000);
 }
 
-let value;
-function getArray(val) {
-  value = val;
 
-}
-  
 
  
 const modal = document.querySelector('[data-item-modal]');
@@ -64,18 +60,22 @@ const price = document.querySelector('[data-item-modal-price]');
   function onExpandClick(e) {
     e.preventDefault();
     const target = e.target.dataset.id;
+    const nameCategory = e.target.attributes.name.textContent
     
-    if (e.target.attributes[0].nodeName === 'data-open') {
-
-      for (const item of value) {
+      if (e.target.attributes[0].nodeName === 'data-open') {
+        
+        fetchGetSpecificCategory(API_OLX, nameCategory)
+          .then(value => {
+            for (const item of value) {
 
       if (item._id === target) {
         showModal(item)
       }
     }
-    
+  })
    }
-  }
+    }
+
 
 function showModal(item) {
   modal.classList.add('isActive');
@@ -93,12 +93,18 @@ openModal.addEventListener('click', onLikeClick);
 function onLikeClick(e) {
   e.preventDefault()
   const target = e.target.dataset.id;
-  if (e.target.attributes[0].nodeName === 'data-like') {
-    for (const item of value) {
+  const nameCategory = e.target.attributes.name.textContent
 
-      if (item._id === target) {
-        fetchPostAddFavoriteID(API_OLX, item._id).then(console.log);
-      }
-    }
+  if (e.target.attributes[0].nodeName === 'data-like') {
+
+    fetchGetSpecificCategory(API_OLX, nameCategory)
+      .then(value => {
+        for (const item of value) {
+
+          if (item._id === target) {
+            fetchPostAddFavoriteID(API_OLX, item._id).then(console.log);
+          }
+        }
+      })
   }
 }

@@ -1,25 +1,25 @@
 {{#each this}}
 <div class="category-box">
-    <div class="head-cardset">
-        <button class="prev">
-            <svg class="pre-btn">
-                <use data-slide="left" href="./images/sprite.svg#icon-prev-btn"></use>
-            </svg>
-        </button>
-        <h2>{{@key}}</h2>
-        <a href="" class="categorylist__link">Дивитися всі</a>
-        <button class="next">
-            <svg class="next-btn">
-                <use data-slide="right" href="./images/sprite.svg#icon-next-btn"></use>
-            </svg>
-        </button>
-    </div>
-    <div class="overflow">
-        <ul class="cardset">
-            {{#each this}}
-            {{>./card}}
-            {{/each}}
-        </ul>
-    </div>
+  <div class="head-cardset">
+    <button class="prev">
+      <svg class="pre-btn">
+        <use data-slide="left" href="./images/sprite.svg#icon-prev-btn"></use>
+      </svg>
+    </button>
+    <h2>{{@key}}</h2>
+    {{!-- <a href="" class="categorylist__link">Дивитися всі</a> --}}
+    <button class="next">
+      <svg class="next-btn">
+        <use data-slide="right" href="./images/sprite.svg#icon-next-btn"></use>
+      </svg>
+    </button>
+  </div>
+  <div class="overflow">
+    <ul class="cardset">
+      {{#each this}}
+      {{>./card}}
+      {{/each}}
+    </ul>
+  </div>
 </div>
 {{/each}}
