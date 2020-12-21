@@ -44,7 +44,10 @@
 .overflow {
   overflow: hidden;
   position: relative;
-  height: calc((((100vw - 30px) * 300 / 290) + 75px) * 2 + 30px);
+  // height: calc((((100vw - 30px) * 300 / 290) + 75px) * 2 + 30px);
+  @media screen and (max-width: 767px) {
+    height: 100%;
+  }
   @media screen and (min-width: 768px) {
     height: calc(((100vw - 64px) / 2 * 300 / 352) + 95px);
   }
