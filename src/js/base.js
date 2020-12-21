@@ -14,7 +14,7 @@ import { fetchPostAddFavoriteID } from './fetch/fetchPostAddFavoriteID';
 import { fetchDeleteFavoriteID } from './fetch/fetchDeleteFavoriteID';
 import { fetchGetOwn } from './fetch/fetchGetOwn'; /***мои товары */
 import { fetchGetFind } from './fetch/fetchGetFind'; /**найти товар */
-// import { fetchAuthenGoogle } from './fetch/fetchAuthenGoogle'; непонятно как работает?
+import { fetchAuthenGoogle } from './fetch/fetchAuthenGoogle'; /**непонятно как работает? */
 import { fetchCall } from './fetch/fetchCall';
 import { fetchPostCall } from './fetch/fetchPostCall'; /*ошибка сервера 500,я не могу проверить*/
 import { fetchPatchCall } from './fetch/fetchPatchCall';/**немогу достучатся, скорей всего нужно применять на товаре созданым в своей учётке*/
@@ -38,7 +38,7 @@ import slider from './sliderNew';
 const cardID = '5fd86775c298a200179c9404';
 // const userId = load('UserToken').user.id;
 const newUser = {
-    "email": "artiss2@example.com",
+    "email": "artwis669@gmail.com",
     "password": "Qwerty2020"
 };
 const searchFind = 'Developer';
