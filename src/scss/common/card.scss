@@ -66,11 +66,11 @@
 
   &:not(:last-child) {
     @media screen and (max-width: $tablet-lower) {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     margin: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -81,7 +81,10 @@
   @media screen and (min-width: 1310px) {
     flex-basis: calc((100% - 4 * 20px) / 4);
     margin: 10px;
-    margin-bottom: 30px;
+  }
+  @media screen and (min-width: 1510px) {
+    flex-basis: calc((100% - 4 * 20px) / 4);
+    margin: 10px;
   }
 }
 
