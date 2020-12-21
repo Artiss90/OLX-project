@@ -96,11 +96,11 @@ async function renderMyAds() {
     }
 
     // ДЛЯ ПРИМЕРА!!!!
-    // for(let item of itemsData){
-    //     if(item.userId==="5fd0b413deae5f0017e41ad5"){
-    //         response.push(item);
-    //     }
-    // }
+    for(let item of itemsData){
+        if(item.userId==="5fd0b413deae5f0017e41ad5"){
+            response.push(item);
+        }
+    }
     // ДЛЯ ПРИМЕРА!!!!
 
 
