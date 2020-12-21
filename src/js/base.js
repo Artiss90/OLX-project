@@ -48,7 +48,7 @@ const myCategory = 'transport';
 // fetchCategory(API_OLX).then(console.log)
 // fetchRegistration(API_OLX, newUser).then(console.log)
 fetchAuthenticationLogin(API_OLX, newUser).then(response => {
-    save('key', response.accessToken)
+    // save('key', response.accessToken)
     save('refreshToken', response.refreshToken)
     save('sid', response.sid)
 }
