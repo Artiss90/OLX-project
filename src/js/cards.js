@@ -1,6 +1,7 @@
 
 import { API_OLX } from "./url.js";
-import  templateCard  from '../templates/cardset.hbs';
+// import  templateCard  from '../templates/cardset.hbs';
+import  templateCard  from '../templates/category.hbs';
 // import { fetchCall } from './fetch/fetchCall.js';
 import { fetchGetSpecificCategory } from './fetch/fetchGetSpecificCategory';
 import { fetchPostAddFavoriteID } from './fetch/fetchPostAddFavoriteID';
@@ -18,9 +19,13 @@ fetchCall(API_OLX, 1).then(getArray)
 const chooseCategory = document.querySelector('.sidenav-desctop');
 chooseCategory.addEventListener('click', onCategoryClick)
 const mobileMenuRef = document.querySelector('[data-menu]');
-mobileMenuRef.addEventListener(`click`, onCategoryClick
+mobileMenuRef.addEventListener(`click`, onCategoryClick)
+
+// const paginationSection = document.querySelector('pages-section'); не работает
+// paginationSection.addEventListener(`click`, onCategoryClick) не работает
+
 function onCategoryClick(e) {
-  // paginationSection.classList.remove('is-shown'); не фурыкает пока-что....
+  // paginationSection.classList.remove('is-shown'); не работает
     if (e.target.nodeName !== `LI`) {
         return
  }
