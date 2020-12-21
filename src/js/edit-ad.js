@@ -9,8 +9,8 @@ import { fetchDeleteCallID } from './fetch/fetchDeleteCallID';
 
 
 const userId = load('UserToken').user.id;
-console.log('222222222', userId);
-fetchGetUser(API_OLX).then(console.log)
+// console.log('222222222', userId);
+// fetchGetUser(API_OLX).then(console.log)
  
 
 const refs = getRefs();
@@ -80,11 +80,12 @@ async function onFetchPatchEditAd(evt) {
   console.log(data);
   
   try {
-    const response = await fetchPatchCall(API_OLX, data, userId );
-  //  console.log( response);
-   console.log('Я изменил объявление');
-    // form.reset();
+    const response = await fetch(`${API_OLX}call/${userId}`, data);
+   console.log( response);
+    // console.log('Я изменил объявление');
     
+    
+    form.reset();
   } catch (error) {
     console.log(error.message);
   }
