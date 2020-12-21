@@ -1,19 +1,5 @@
-{{#each this}}
-    <li class="categorylist">
-        <div class="categorylist__description">
-            <h3 class="categorylist__title">{{category}}</h3>
-            <a href="" class="categorylist__link">Дивитися всі</a>
-            <button class="prev">
-                <svg class="pre-btn">
-                    <use href="./images/sprite.svg#icon-prev-btn"></use>
-                </svg>
-            </button>
-            <button class="next">
-                <svg class="next-btn">
-                    <use href="./images/sprite.svg#icon-next-btn"></use>
-                </svg>
-            </button>
-        </div>
-        {{>./cardset}}
-    </li>
-{{/each}}
+<ul class="cardset">
+  {{#each this}}
+  {{>./card}}
+  {{/each}}
+</ul>

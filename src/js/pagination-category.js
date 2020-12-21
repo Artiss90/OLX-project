@@ -24,6 +24,9 @@ refs.thirdPage.addEventListener('click', renderThirdPage);
 refs.clearFilter.addEventListener('click', renderMainPage);
 refs.touchLogo.addEventListener('click', renderMainPage);
 
+// const paginationSection = document.querySelector('pages-section'); //не работает
+// paginationSection.addEventListener(`click`, onCategoryClick) //не работает
+
 fetchCall(API_OLX, 1).then(render => document.querySelector('.cards').innerHTML = templateHomeCard(render)).then(history.pushState(null, null, '/main'))
 
 function renderMainPage(event) {
