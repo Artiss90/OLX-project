@@ -1,7 +1,6 @@
 {
   "name": "olx",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --env.mode development --config ./webpack/config.js --port 1999",
@@ -12,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Artiss90/OLX-team-project"
+    "url": "git+https://github.com/Artiss90/OLX-project.git"
   },
   "keywords": [],
   "author": "Artiss90",
   "bugs": {
-    "url": "https://github.com/Artiss90/OLX-team-project"
+    "url": "https://github.com/Artiss90/OLX-project"
   },
-  "homepage": "https://Artiss90.github.io/OLX-team-project",
+  "homepage": "https://Artiss90.github.io/OLX-project",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
@@ -55,5 +54,7 @@
     "core-js": "^3.6.5",
     "handlebars": "^4.7.6",
     "siema": "^1.5.1"
-  }
+  },
+  "license": "ISC",
+  "description": ""
 }
