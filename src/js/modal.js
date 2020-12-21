@@ -1,3 +1,4 @@
+
 import addModalTempl from '../templates/add-card.hbs' ;
 import { API_OLX } from './url';
 
@@ -13,6 +14,8 @@ function createNewModalTempl(){
 
 
 
+import  { API_OLX } from './url';
+
 // Закриття модалки
 const refs = {
     closeModalBtn: document.querySelector('[data-clouse-button-create-ad]'),
@@ -22,15 +25,13 @@ const refs = {
 console.log(refs.backdropAdd);
 const myProducts =  document.querySelector('.my-cards');
 const formAdd = document.querySelector('#form-add');
-const validateBtn = formAdd.querySelector('.create-an-ad-modal-mobile__btn');
-const nameProduct = formAdd.querySelector('#product-name-add');
-const descriptionProduct = formAdd.querySelector('#product-desc-add');
 const selectProduct = formAdd.querySelector('#categori-product-add');
 const productPrice = formAdd.querySelector('#price-product-add');
 const tel = formAdd.querySelector('#sellers-telephone-add');
 const requiredFields = formAdd.querySelectorAll('.required');
 
-
+const closeModalBtn = document.querySelector('[data-clouse-button-create-ad]'),
+const backdropAdd = document.querySelector('.backdrop-add');
 
 selectProduct.addEventListener('click', renderCategoriesList);
 
@@ -42,22 +43,20 @@ function fetchCategories() {
     
     catch(error => console.log(error));
 }
-
-
-                            // випадаючий список
+//випадаючий список
 function renderCategoriesList() {
   let categoryMarkup = ``;
   fetchCategories().then((categories) => {
     for (let category of categories){
       categoryMarkup += `<option value="${category}" class="js-add-category">${category}</option> `;
     }
-    selectProduct.insertAdjacentHTML('beforeend', categoryMarkup);
-    selectProduct.removeEventListener('click', renderCategoriesList);
+    addCategory.insertAdjacentHTML('beforeend', categoryMarkup);
+    addCategory.removeEventListener('click', renderCategoriesList);
    })
     .catch(error => console.log(error));
 }
 
-                              // Валідація форми
+// Валідація форми
 
 
 
@@ -67,14 +66,14 @@ const correctPriceV = /\d+\.\d{2}\D{3}/;
 
 
 
-formAdd.addEventListener('submit', validatedForm);
+// formAdd.addEventListener('submit', validatedForm);
 
-function validatedForm(event){
+export default function validatedForm(event){
     event.preventDefault();
     removeValidation();
     correctFields();
-    correctTel();
-    correctPrice();
+    correctTelFunc();
+    correctPriceFunc();
 }
 
 function errorCreate(text){
@@ -103,7 +102,7 @@ function correctFields(){
     }
 }
 
-function correctTel(){
+function correctTelFunc(){
     if(tel.value !== ""){
         if(!correctTelV.test(tel.value)){
             console.log('невірно введений номер');
@@ -113,7 +112,7 @@ function correctTel(){
     }  
 }
 
-function correctPrice(){
+function correctPriceFunc(){
     if(productPrice.value !== ""){
         if(!correctPriceV.test(productPrice.value)){
             const error = errorCreate('введіть ціну згідно формату 0.00грн')
@@ -123,19 +122,16 @@ function correctPrice(){
 }
 
 
-// 
-
-
-
+                   // Закриття модалки
 
 //  через кнопку
-refs.closeModalBtn.addEventListener('click', modalClose);
+closeModalBtn.addEventListener('click', modalClose);
  
 //  по Esc
 document.addEventListener('keydown', modalEscClose);
 
 //  по оверлею
-refs.backdropAdd.addEventListener('click', onModalBackdropClick);
+backdropAdd.addEventListener('click', onModalBackdropClick);
 
 
 function modalClose() {
@@ -152,8 +148,6 @@ function onModalBackdropClick(evt) {
   }
   if (evt.target.attributes.class === undefined) {return}
 }
-
-
 // import addCardModal from '../templates/add-card.hbs';
 // import openModalAuth from './authorization';
 // import modalLogic from './addAndEditModalLogic';
