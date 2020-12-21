@@ -39,7 +39,6 @@ function controlModalWindow(modal) {
         body.classList.toggle(`is-open-modal`)
 }
 
-
 function onOpenModalHeader(btn, modal) {
         btn.addEventListener(`click`, openModal)
         function openModal() {
