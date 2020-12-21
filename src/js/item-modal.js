@@ -4,12 +4,13 @@ import { fetchFavouritesDelete } from './fetchFavouritesDelete';
 import { fetchGetFavorites } from './fetch/fetchGetFavorites';
 import { fetchPostAddFavoriteID } from './fetch/fetchPostAddFavoriteID';
 import { fetchGetUserID } from './fetch/fetchGetUserID';
+import { renderFavourites } from './dropdowm-menu';
 
 const modal = document.querySelector('[data-item-modal]');
 const name = document.querySelector('[data-item-modal-title]');
 const code = document.querySelector('[data-item-modal-code]');
 const imgBig = document.querySelector('[data-item-modal-imagebig]');
-const imagesSmall = document.querySelectorAll('[data-item-modal-imagesmall]');
+const imagesSmall = document.querySelector('[data-item-modal-image-list]');
 const salerInfo = document.querySelector('[data-item-modal-salerinfo]');
 const favourites = document.querySelector('[data-item-modal-favourites]');
 const share = document.querySelector('[data-item-modal-share]');
@@ -38,6 +39,9 @@ function onFavouritesClicked() {
 }
 
 function updateFavourites(render) {
+    if(document.querySelector(".container-my-favourites")!==null){
+        renderFavourites();
+    }
   if (render === null) return;
   console.log(render);
   favouritesList = [];
@@ -55,9 +59,26 @@ function updateFavourites(render) {
 cardsContainer.addEventListener('click', onItemClicked);
 
 function onItemClicked(event) {
-  console.log(event.target.src);
+  console.log(event.target.parentNode);
   fetchGetFavorites(API_OLX).then(setFavourites);
-  const image = event.target.querySelector("[data-id]");
+  let image = event.target.querySelector("[data-id]");
+  if(image===null){
+    image = event.target.parentNode;
+  }
+  console.log(image.dataset);
+  if(image===null || image.classList.contains("edit"))return;
+
+  if(image.dataset.like===""){
+    for (const item of itemsData) {
+      // if (item._id === undefined) continue;
+      if (item._id.toString() === image.dataset.id) {
+        console.log(item);
+        currentItem = item;
+        onFavouritesClicked();
+        return;
+      }
+    }
+  }
   console.log(image.dataset.id);
   for (const item of itemsData) {
     // if (item._id === undefined) continue;
@@ -99,6 +120,9 @@ function closeModal() {
   if (modal.classList.contains('isActive')) {
     modal.classList.remove('isActive');
   }
+  document.querySelector("body").classList.remove('scrollLocked');
+  imagesSmall.innerHTML = "";
+  imagesSmall.removeEventListener('click', changePhoto);
 }
 let favouritesList = [];
 fetchGetFavorites(API_OLX).then(setFavourites);
@@ -122,10 +146,12 @@ function setData(render) {
     const array = render[key];
     for (const item of array) {
       itemsData.push(item);
+      if(item.imageUrls.length>1){
+          console.log(item);
+          
+      }
     }
   }
-
-  console.log(itemsData.length);
 }
 
 salerInfo.addEventListener('mouseenter', addHoverText);
@@ -155,6 +181,8 @@ function addNonhoverText() {
 }
 
 function showModal(item) {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    document.querySelector("body").classList.add('scrollLocked');
   modal.classList.add('isActive');
   name.textContent = item.title;
   price.textContent = item.price + '.00 грн';
@@ -168,6 +196,31 @@ function showModal(item) {
     '<p class="nav-and-description-button-nonhovered">Информация о<br> продавце</p>',
   );
 
+  console.log('length' + item.imageUrls.length)
+  imagesSmall.innerHTML = "";
+//   if(item.imageUrls.length===1){
+//     imagesSmall.insertAdjacentHTML('afterbegin','<li class="image-block-small-list-item"><img class="image-block-small-list-item-img" data-item-modal-imagesmall src="'+item.imageUrls[0]+'" alt=""><div data-mobile-swiper></div></li>');
+//   }else if(item.imageUrls.length>1){
+    
+//   }
+  for(let i = 0; i < item.imageUrls.length; i++){
+    imagesSmall.insertAdjacentHTML('afterbegin','<li class="image-block-small-list-item"><img class="image-block-small-list-item-img" data-item-modal-imagesmall src="'+item.imageUrls[i]+'" alt=""><div data-mobile-swiper></div></li>');
+}
+
+//   for(let value of item.imageUrls){
+//     console.log("PHOTO!");
+//     imagesSmall.insertAdjacentHTML('afterbegin','<li class="image-block-small-list-item"><img class="image-block-small-list-item-img" data-item-modal-imagesmall src="'+value+'" alt=""><div data-mobile-swiper></div></li>');
+//   }
+
+  divsMobile = document.querySelectorAll("[data-mobile-swiper]");
+  if(divsMobile.length>0){
+    divsMobile[0].classList.add("div-active");
+  }
+
+  photosList = item.imageUrls;
+  photosSize = item.imageUrls.length;
+
+  imagesSmall.addEventListener('click', changePhoto);
   console.log(favourites);
   for (const localeItem of favouritesList) {
     console.log(localeItem + '  ' + item._id);
@@ -177,10 +230,116 @@ function showModal(item) {
       return;
     }
   }
+
   favourites.classList.remove('selected');
+}
+
+let photosList;
+let currentPhotoIdx = 0;
+let photosSize = 0;
+
+function changePhoto(event){
+    console.log(event.target.src);
+    if(event.target.src!==undefined && event.target.src !== null){
+        imgBig.src = event.target.src;
+    }
+}
+
+
+modal.addEventListener('click', closeOverlay);
+
+function closeOverlay(event){
+    if(event.target.classList.contains("overlay")){
+        closeModal();
+    }
 }
 
 //<li class="image-block-small-list-item">
 //            <img data-item-modal-imagesmall src="https://estore.ua/media/catalog/product/cache/8/image/650x650/9df78eab33525d08d6e5fb8d27136e95/m/t/mtp72_vw_34fr_watch-40-alum-gold-nc-5s_vw_34fr_wf_co_4.jpeg" alt="">
 //            <div></div>
 //          </li>
+
+let divsMobile;
+
+function swipedetect(el, callback){
+  
+    var touchsurface = el,
+    swipedir,
+    startX,
+    startY,
+    distX,
+    distY,
+    threshold = 150, //required min distance traveled to be considered swipe
+    restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+    allowedTime = 300, // maximum time allowed to travel that distance
+    elapsedTime,
+    startTime,
+    handleswipe = callback || function(swipedir){}
+  
+    touchsurface.addEventListener('touchstart', function(e){
+        var touchobj = e.changedTouches[0]
+        swipedir = 'none'
+        // dist = 0
+        startX = touchobj.pageX
+        startY = touchobj.pageY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+        e.preventDefault()
+    }, false)
+  
+    touchsurface.addEventListener('touchmove', function(e){
+        e.preventDefault() // prevent scrolling when inside DIV
+    }, false)
+  
+    touchsurface.addEventListener('touchend', function(e){
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+        distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime // get time elapsed
+        if (elapsedTime <= allowedTime){ // first condition for awipe met
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+                swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+            }
+            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+            }
+        }
+        handleswipe(swipedir)
+        e.preventDefault()
+    }, false)
+}
+  
+//USAGE:
+
+// const el = document.getElementById('someel')
+swipedetect(imgBig, function(swipedir){
+
+    if(getComputedStyle(document.querySelector(".image-block-small-list-item-img"), '.image-block-small-list-item-img').visibility!=="hidden")return;
+
+    if (swipedir =='left'){
+        // alert('You just swiped left!')
+        currentPhotoIdx++;
+        if(currentPhotoIdx===photosSize){
+            currentPhotoIdx = 0;
+        }
+        changePhotoSwiper();
+    }else if(swipedir == 'right'){
+        // alert('You just swiped right!')
+        currentPhotoIdx--;
+        if(currentPhotoIdx<0){
+            currentPhotoIdx = photosSize-1;
+        }
+        changePhotoSwiper();
+    }
+
+    console.log(currentPhotoIdx);
+});
+
+function changePhotoSwiper(){
+    for(let item of divsMobile){
+        item.classList.remove("div-active");
+    }
+
+    divsMobile[currentPhotoIdx].classList.add("div-active");
+
+    imgBig.src = photosList[currentPhotoIdx];
+}

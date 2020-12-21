@@ -13,5 +13,13 @@ export default function getRefs (){
     exitAccount: document.querySelector('[data-exit]'), 
     btnSubmitCreate: document.querySelector('.create-an-ad-modal__submit-btn'),
     mainRef: document.querySelector('.main-js'),
+    //Edit-ad
+    closeEditAdBtn: document.querySelector('[data-edit-close]'),
+    backdropPopupEdit: document.querySelector('[data-edit-popup]'),
+    backdropEditAd: document.querySelector('[data-edit-popup]'),
+    closeBtnCancel: document.querySelector('[data-edit-ad-cancel]'),
+    // Fatch Edit-ad
+    editAdForm: document.querySelector('[data-form-edit]'), 
+    
   }
 }

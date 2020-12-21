@@ -171,10 +171,8 @@
         </button>
       </div>
     </div>
-  </div>
-  <!-- модалка создания  -->
-  <div id="create-an-ad-modal" class="create-an-ad-modal" data-create-ad>
-    
+ <!-- модалка создания  -->
+    <div id="create-an-ad-modal" class="create-an-ad-modal backdrop-add is-hidden" data-create-ad>
     <div class="create-an-ad-modal__box container ">
       <button type="button" class="create-an-ad-modal__menu-clouse" data-clouse-button-create-ad>
           <svg aria-label="закрыть окно" class="create-an-ad-modal__icon-clouse">
@@ -262,6 +260,16 @@
   </form>
 </div>
 </div>
+<!--    незнаю что ето 21.12.Галя -->
+<!--     </div>
+    <div class=".my-cards"></div>
+    <div class="create-an-ad-modal-mobile js-create-an-ad-modal-mobile is-login">
+      <button class="create-an-ad-modal-mobile__btn">
+        <svg aria-label="Добавить товар" class="create-an-ad-modal-mobile-icon" width="50" height="50">
+          <use href="./images/sprite-min.svg#icon-add-elipse"></use>
+        </svg>
+      </button>
+    </div> -->
 <!-- круглая кнопка в мобилке -->
 <div class="create-an-ad-modal-mobile js-create-an-ad-modal-mobile is-login">
   <button class="create-an-ad-modal-mobile__btn">
@@ -441,6 +449,110 @@
           <p class="nav-and-description-smalltitle">Опис:</p>
           <p data-item-modal-description class="nav-and-description-text"></p>
         </div>
+    </div>
+  </div>
+  <!-- Редактировать объявление -->
+  <div id="create-an-ad-modal-e" class="backdrop-edit is-hidden" data-edit-popup>
+    <div class="create-an-ad-modal__box container ">
+      <button type="button" class="create-an-ad-modal__menu-clouse" data-edit-close>
+        <svg aria-label="закрыть окно" class="create-an-ad-modal__icon-clouse">
+          <use href="./images/sprite-min.svg#icon-menu-clouse" widrh="14" height="14">
+          </use>
+        </svg>
+      </button>
+      <h2 class="create-an-ad-modal__title">Редагувати оголошеня</h2>
+      <form data-form-edit class="edit-ad-form">
+        <ul>
+          <li class="create-an-ad-modal-li">
+            <span class="create-an-ad-modal__title-text">Назва товару</span>
+            <input type="text" name="title" id="product-name-add-e"
+              class="create-an-ad-modal__input-area required">
+          </li>
+          <li class="create-an-ad-modal__file-loader create-an-ad-modal-li">
+            <span class="create-an-ad-modal__title-text">Фото</span>
+            <div class="create-an-ad-modal__file-box js-inputClick">
+              <div class="create-an-ad-modal-btn-file">
+                <input type="file" name="file" id="file-e" class="create-an-ad-modal__input-file">
+                <label for="file" class="create-an-ad-modal__tertiary js-labelFile">
+                  <span class="js-fileName">+</span>
+                  <img id="add-image-e" class="create-an-ad-modal__add-image" />
+                </label>
+              </div>
+              <div class="create-an-ad-modal-btn-file">
+                <input type="file" name="file" id="file-2-e" class="create-an-ad-modal__input-file">
+                <label for="file-2" class="create-an-ad-modal__tertiary js-labelFile">
+                  <span class="js-fileName">+</span>
+                  <img id="add-image2-e" class="create-an-ad-modal__add-image" />
+                </label>
+              </div>
+              <div class="create-an-ad-modal-btn-file">
+                <input type="file" name="file" id="file-3-e" class="create-an-ad-modal__input-file">
+                <label for="file-3" class="create-an-ad-modal__tertiary js-labelFile">
+                  <span class="js-fileName">+</span>
+                  <img id="add-image3-e" class="create-an-ad-modal__add-image" />
+                </label>
+              </div>
+              <div class="create-an-ad-modal-btn-file">
+                <input type="file" name="file" id="file-4-e" class="create-an-ad-modal__input-file">
+                <label for="file-4" class="create-an-ad-modal__tertiary js-labelFile">
+                  <span class="js-fileName">+</span>
+                  <img id="add-image4-e" class="create-an-ad-modal__add-image" />
+                </label>
+              </div>
+              <div class="create-an-ad-modal-btn-file">
+                <input type="file" name="file" id="file-5-e" class="create-an-ad-modal__input-file">
+                <label for="file-5" class="create-an-ad-modal__tertiary js-labelFile">
+                  <span class="js-fileName">+</span>
+                  <img id="add-image5-e" class="create-an-ad-modal__add-image" />
+                </label>
+              </div>
+              <div class="create-an-ad-modal-btn-file">
+                <input type="file" name="file" id="file-6-e" class="create-an-ad-modal__input-file">
+                <label for="file-6" class="create-an-ad-modal__tertiary js-labelFile">
+                  <span class="js-fileName">+</span>
+                  <img id="add-image6-e" class="create-an-ad-modal__add-image" />
+                </label>
+              </div>
+            </div>
+          </li>
+          <li class="create-an-ad-modal-li">
+            <span class="create-an-ad-modal__title-text">Опис товару</span>
+            <input type="text" name="description" id="product-desc-add-e" class="create-an-ad-modal__input-area">
+          </li>
+          <li class="create-an-ad-modal-li">
+            <label for="categori-product-add"></label>
+            <span class="create-an-ad-modal__title-text">Категорія Товару</span>
+            <input type="text" name="category" id="categori-product-add-e"
+              class="create-an-ad-modal__input-area" list="categori-product-add-list" placeholder="Вибіріть категорію">
+            <datalist id="categori-product-add-list-e">
+            </datalist>
+          </li>
+          <li class="create-an-ad-modal-li">
+            <span class="create-an-ad-modal__title-text">Ціна</span>
+            <input type="text" name="price" id="price-product-add-e" class="create-an-ad-modal__input-area"
+              placeholder="0.00 грн">
+          </li>
+          <li class="create-an-ad-modal-li">
+            <span class="create-an-ad-modal__title-text">Телефон</span>
+            <input type="text" name="phone" id="sellers-telephone-add-e"
+              class="create-an-ad-modal__input-area" placeholder="+38 (0--) --- -- --">
+          </li>
+        </ul>
+        <button type="submit" class="create-edit-ad-modal__delete-btn">
+          <svg class="icon-delete-ad" width="14" height="14">
+            <use href="./images/sprite-min.svg#icon-delete-file"></use>
+          </svg>
+          <span class="create-delete-ad-modal__text"></span>Видалити оголошення</span>
+        </button>
+        <div class="container-btn-edit-modal">
+          <button type="submit" class="create-edit-ad-modal sub-btn">
+            Зберегти
+          </button>
+          <button data-edit-ad-cancel type="reset" class="create-edit-ad-modal cancel-btn">
+            Відміна
+          </button>
+        </div>
+      </form>
     </div>
   </div>
   <!-- Выход -->

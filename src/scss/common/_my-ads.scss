@@ -200,6 +200,11 @@
   background-color: transparent;
   border: transparent;
   fill: $white-color;
+
+  &:hover .my-ads-icon-btn,
+  &:focus .my-ads-icon-btn {
+    fill: $orange-color;
+  }
 }
 
 .my-ads-btn-edit {
