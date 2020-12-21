@@ -35,8 +35,8 @@ const sideNavContainerRef = document.querySelector(`.sidenav__link`)
 
 // открытие - закрытие модалок Хедера
 function controlModalWindow(modal) {
-           modal.classList.toggle(`is-open`)
-           body.classList.toggle(`is-open-modal`)
+        modal.classList.toggle(`is-open`)
+        body.classList.toggle(`is-open-modal`)
 }
 
 

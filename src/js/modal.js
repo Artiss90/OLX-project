@@ -133,6 +133,7 @@ function correctPriceFunc(){
 // //  по оверлею
 // backdropAdd.addEventListener('click', onModalBackdropClick);
 
+
 // function modalClose() {
 //     refs.backdropAdd.classList.toggle('is-open');
 // }
@@ -141,6 +142,7 @@ function correctPriceFunc(){
 //     modalClose();
 //   }
 // }
+
 // function onModalBackdropClick(evt) {
 //   if (evt.target.attributes.class.nodeValue === "backdrop-add") {
 //     modalClose();
