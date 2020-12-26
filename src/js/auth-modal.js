@@ -32,7 +32,7 @@ if (localStorage.getItem('key') === null)
 authRefs.regestryBtn.addEventListener('click', openModal);
 authRefs.sideNavRegBtn.addEventListener('click', openModal);
 authRefs.authModal.addEventListener('click', closeModal);
-function openModal() {
+export function openModal() {
     authRefs.authModal.classList.remove('is-hidden');
     document.addEventListener('keyup', closeModal);
 };

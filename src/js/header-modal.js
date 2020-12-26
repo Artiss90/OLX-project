@@ -6,6 +6,7 @@ import MarkupSidenavMobile from '../templates/header-sidenav-mobile.hbs';
 import MarkupModalCreateAnAdCategory from '../templates/header-create-an-ad-category.hbs';
 import MarkupFindSearch from '../templates/my-search-card.hbs';
 import { fetchGetFind } from './fetch/fetchGetFind';
+import { openModal } from './auth-modal';
 import getRefs from './refs';
 const refs = getRefs();
 
@@ -35,8 +36,13 @@ const sideNavContainerRef = document.querySelector(`.sidenav__link`)
 
 // открытие - закрытие модалок Хедера
 function controlModalWindow(modal) {
-        modal.classList.toggle(`is-open`)
-        body.classList.toggle(`is-open-modal`)
+        if (localStorage.getItem('key') !== null)
+        {modal.classList.toggle(`is-open`)
+                body.classList.toggle(`is-open-modal`)
+        } else {
+                openModal();   
+        }
+        
 }
 
 function onOpenModalHeader(btn, modal) {
