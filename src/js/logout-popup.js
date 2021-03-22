@@ -3,7 +3,7 @@ import { API_OLX } from './url';
 import { fetchLogout } from './fetch/fetchLogout';
 import { changeElem } from './auth-modal';
 import { isLogInRefs } from './auth-modal';
-import {resetForm} from './auth-modal'
+import { resetForm } from './auth-modal';
 
 const refs = getRefs();
 
@@ -16,9 +16,9 @@ refs.backdrop.addEventListener('click', onCloseBackdropClick);
 refs.backdrop.addEventListener('click', onCloseBackdropClick);
 
 function openPopupLogoutModal() {
-  onTogglePopUp()
+  onTogglePopUp();
   document.addEventListener('keyup', onCloseEsc);
-} 
+}
 function onTogglePopUp() {
   refs.backdropPopupLogout.classList.toggle('is-hidden');
   document.removeEventListener('keyup', onCloseEsc);
@@ -26,29 +26,26 @@ function onTogglePopUp() {
 
 //Выход из аккаунта
 async function onExitAccount() {
-   try {
-     const response = await fetchLogout(API_OLX);
-    // console.log(response);
-    console.log('Я вышел из акаунта');
+  try {
+    const response = await fetchLogout(API_OLX);
     onTogglePopUp();
     changeElem(isLogInRefs);
     resetForm();
   } catch (error) {
     console.log(error.message);
   }
- 
 }
 
 //Закрытие по клику на бэкдроп и esc
 function onCloseBackdropClick(evt) {
   if (evt.currentTarget === evt.target) {
-    onTogglePopUp()
+    onTogglePopUp();
   }
 }
 
 function onCloseEsc(evt) {
-  const ESC_KEY_CODE = "Escape";
+  const ESC_KEY_CODE = 'Escape';
   if (evt.code === ESC_KEY_CODE) {
-    onTogglePopUp()
+    onTogglePopUp();
   }
 }

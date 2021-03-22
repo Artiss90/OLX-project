@@ -30,9 +30,7 @@ const btnOpenCreateAnAdMobile = document.querySelector(`.js-create-an-ad-modal-m
 const btnClearFilter = document.querySelector(`.header-navigation__clear-filter`)
 const btnLogo = document.querySelector(`.header-navigation_logo`)
 const sideNavContainerRef = document.querySelector(`.sidenav__link`)
-// const openModalRegistrartion = document.querySelector(`[data-modal-open-registration]`)
-// const modalRegistration = document.querySelector(`[data-menu-registration]`)
-// const clouseModalRegistration = document.querySelector(` [data-clouse-button-modal-registration]`)
+
 
 // открытие - закрытие модалок Хедера
 function controlModalWindow(modal) {
@@ -79,10 +77,6 @@ onOpenModalHeader(clouseModalCreateAnAd, modalCreateAnAd)
 onOpenModalHeader(btnOpenModalSerch, modalSerch)
 onOpenModalHeader(btnClouseModalSerch, modalSerch)
 onOpenModalHeader(btnSearchInput, modalSerch)
-
-// onOpenModalHeader(openModalRegistrartion, modalRegistration)
-// onOpenModalHeader(clouseModalRegistration, modalRegistration)
-// onOpenModalHeader(sidenavModalRegistrartion,modalRegistration)
 
 /** модалка поиска */
 containerModalSerch.addEventListener('submit', inGetFind)

@@ -8,8 +8,7 @@ import { fetchFavouritesDelete } from './fetchFavouritesDelete';
 import myFavouritesCardRenderTpl from '../templates/my-favourites-card.hbs';
 import myAdsCardRenderTpl from '../templates/my-ads-card.hbs';
 
-//const showMyAd = document.querySelector("[data-dropdown-ad]");
-const showMyFavourites = document.querySelector("[data-dropdown-favourites]");
+const showMyFavourites = document.querySelector('[data-dropdown-favourites]');
 let dismissBtnList;
 let containerFavourites;
 console.log(containerFavourites);
@@ -36,63 +35,68 @@ function setData(render) {
 
 let currentUser;
 
-function setCurrentUser(user){
-    currentUser = user;
-    console.log(currentUser);
-    renderMyAds();
+function setCurrentUser(user) {
+  currentUser = user;
+  renderMyAds();
 }
 
 export async function renderFavourites() {
-  document.querySelector('.cards').innerHTML
-  
-    try { 
+  document.querySelector('.cards').innerHTML;
+
+  try {
     const response = await fetchGetFavorites(API_OLX);
     console.log('Я респонс', response);
-      if (response.favourites.length === 0) {
-        console.log('Нет объявлений');
-      } else {
+    if (response.favourites.length === 0) {
+      console.log('Нет объявлений');
+    } else {
       refs.myAds.innerHTML = myFavouritesCardRenderTpl(response.favourites);
-      }
-    } catch (error) {
-      console.log(error.message);
     }
-  
-    dismissBtnList = document.querySelectorAll("[data-like-favourites]");
-    containerFavourites = document.querySelector(".container-my-favourites");
-    containerFavourites.addEventListener('click', dismiss);
-    console.log(dismissBtnList);
+  } catch (error) {
+    console.log(error.message);
   }
 
-  function dismiss(event){
-      console.log(event.target.parentElement.parentElement);
-      if(event.target.parentElement.dataset.likeFavourites==="" || event.target.parentElement.parentElement.dataset.likeFavourites===""){
-          if(event.target.parentElement.dataset.id!==undefined){
-            fetchFavouritesDelete(API_OLX, event.target.parentElement.dataset.id).then(renderFavourites);
-          }else{
-            fetchFavouritesDelete(API_OLX, event.target.parentElement.parentElement.dataset.id).then(renderFavourites);
-          }
- 
-      }
+  dismissBtnList = document.querySelectorAll('[data-like-favourites]');
+  containerFavourites = document.querySelector('.container-my-favourites');
+  containerFavourites.addEventListener('click', dismiss);
+}
+
+function dismiss(event) {
+  if (
+    event.target.parentElement.dataset.likeFavourites === '' ||
+    event.target.parentElement.parentElement.dataset.likeFavourites === ''
+  ) {
+    if (event.target.parentElement.dataset.id !== undefined) {
+      fetchFavouritesDelete(
+        API_OLX,
+        event.target.parentElement.dataset.id,
+      ).then(renderFavourites);
+    } else {
+      fetchFavouritesDelete(
+        API_OLX,
+        event.target.parentElement.parentElement.dataset.id,
+      ).then(renderFavourites);
+    }
   }
+}
 
-  const showMyAds = document.querySelector("[data-dropdown-ad]");
+const showMyAds = document.querySelector('[data-dropdown-ad]');
 
-  showMyAds.addEventListener('click', showAds);
+showMyAds.addEventListener('click', showAds);
 
-  function showAds(){
-    fetchGetUser(API_OLX).then(setCurrentUser).catch(console.log)
-  }
+function showAds() {
+  fetchGetUser(API_OLX).then(setCurrentUser).catch(console.log);
+}
 
 async function renderMyAds() {
-  document.querySelector('.cards').innerHTML
-  
-    try { 
+  document.querySelector('.cards').innerHTML;
+
+  try {
     let response = [];
 
-    for(let item of itemsData){
-        if(item.userId===currentUser.id){
-            response.push(item);
-        }
+    for (let item of itemsData) {
+      if (item.userId === currentUser.id) {
+        response.push(item);
+      }
     }
 
     // ДЛЯ ПРИМЕРА!!!!
@@ -103,11 +107,9 @@ async function renderMyAds() {
     // }
     // ДЛЯ ПРИМЕРА!!!!
 
-
-      refs.myAds.innerHTML = myAdsCardRenderTpl(response);
+    refs.myAds.innerHTML = myAdsCardRenderTpl(response);
     //   }
-    } catch (error) {
-      console.log(error.message);
-    }
-  
+  } catch (error) {
+    console.log(error.message);
   }
+}

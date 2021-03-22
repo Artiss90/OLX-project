@@ -1,19 +1,10 @@
 
 import { API_OLX } from "./url.js";
-// import  templateCard  from '../templates/cardset.hbs';
 import  templateCard  from '../templates/category.hbs';
-// import { fetchCall } from './fetch/fetchCall.js';
 import { fetchGetSpecificCategory } from './fetch/fetchGetSpecificCategory';
 import { fetchPostAddFavoriteID } from './fetch/fetchPostAddFavoriteID';
 import { fetchCall } from "./fetch/fetchCall.js";
 import templateHomeCard from '../templates/home-card.hbs';
-
-// we wont be used this one;
-// fetchCall(API_OLX, 3).then(render => document.querySelector('.cards').innerHTML = templateCard(render.property))
-
-// category property is rendered by default;)))
-// fetchCall(API_OLX, 1).then(render => document.querySelector('.cards').innerHTML = templateHomeCard(render))
-// fetchCall(API_OLX, 1).then(getArray)
 
 // here we are rendering one category we are choosing by click on category;))
 const chooseCategory = document.querySelector('.sidenav-desctop');
@@ -34,7 +25,6 @@ function onCategoryClick(e) {
   const category = e.target.textContent;
   
   fetchGetSpecificCategory(API_OLX, category.trim()).then(render => document.querySelector('.cards').innerHTML = templateCard(render))
-  // fetchGetSpecificCategory(API_OLX, category.trim()).then(getArray)
     history.pushState(null, null, e.target.dataset.category);
   setTimeout(() =>
   { document.querySelector('.cards__title').textContent = category;
