@@ -95,11 +95,15 @@
   @media screen and (min-width: 768px) {
     width: 210px;
     height: 60px;
+    background-color: $orange-color;
+    color: $white-color;
   }
 }
-.signin {
-  background-color: $orange-color;
-  color: $white-color;
+
+.auth-button:hover,
+.auth-button:focus-within {
+  background-color: $white-color;
+  color: $orange-color;
 }
 .auth-button-container {
   display: flex;
